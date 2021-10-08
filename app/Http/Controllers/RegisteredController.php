@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class RegisteredController extends Controller
 {
@@ -41,6 +43,10 @@ class RegisteredController extends Controller
 
     public function destroy(User $user)
     {
-        //
+        Gate::authorize('delete-user', Auth::user());
+
+        User::destroy($user->id);
+
+        return redirect()->back()->with(['success' => 'User Deleted']);
     }
 }

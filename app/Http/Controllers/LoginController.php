@@ -30,7 +30,7 @@ class LoginController extends Controller
         throw ValidationException::withMessages(['email' => 'Your Credentials Could Not Be Verified']);
     }
 
-    public function destroy(User $user)
+    public function destroy()
     {
         Auth::logout();
 

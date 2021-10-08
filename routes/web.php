@@ -19,6 +19,7 @@ Route::get('/', fn () => view('welcome'));
 
 Route::get('/login', [LoginController::class, 'create'])->name('login.create')->middleware('guest');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store')->middleware('guest');
-Route::delete('/logout/{user}', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
+Route::delete('/logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
 
-Route::get('/', [RegisteredController::class, 'index'])->name('registered.index')->middleware('auth');
+Route::get('/users', [RegisteredController::class, 'index'])->name('registered.index')->middleware('auth');
+Route::delete('/users/{user}', [RegisteredController::class, 'destroy'])->name('registered.destroy')->middleware('auth');

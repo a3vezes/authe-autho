@@ -3,7 +3,7 @@
         @auth
             <h1>Hello {{ Auth::user()->name }}</h1>
 
-            <form action="{{ route('login.destroy', Auth::user()) }}" method="POST">'
+            <form action="{{ route('login.destroy') }}" method="POST">'
                 @csrf
                 @method('DELETE')
                 <button type="submit">Log Out</button>
