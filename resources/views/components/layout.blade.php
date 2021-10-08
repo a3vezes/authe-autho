@@ -19,8 +19,9 @@
 
 <body>
     <x-navbar />
-
-    {{ $slot }}
+    <main>
+        {{ $slot }}
+    </main>
 </body>
 
 </html>
