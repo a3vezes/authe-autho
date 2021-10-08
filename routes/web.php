@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisteredController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn () => view('welcome'));
+
+Route::get('/login', [LoginController::class, 'create'])->name('login.create')->middleware('guest');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store')->middleware('guest');
+Route::delete('/logout/{user}', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
+
+Route::get('/', [RegisteredController::class, 'index'])->name('registered.index')->middleware('auth');
